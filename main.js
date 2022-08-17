@@ -1,22 +1,24 @@
 const puppeteer = require('puppeteer');
 const credentials = require('./credentials');
 
-const EMAIL_INPUT_SELECTOR = 'input[id="ap_email"]';
-const PASSWORD_INPUT_SELECTOR = 'input[id="ap_password"]';
-const SIGNIN_BUTTON_SELECTOR = 'input[id="signInSubmit"]';
-const LIBRARY_SECTION_SELECTOR = 'div[id="library"]';
-const BOOKS_SELECTOR = 'div[class="a-row kp-notebook-library-each-book"]';
-const URL = 'https://read.amazon.com/notebook';
+const {
+    EMAIL_INPUT_SELECTOR,
+    PASSWORD_INPUT_SELECTOR,
+    SIGNIN_BUTTON_SELECTOR,
+    LIBRARY_SECTION_SELECTOR,
+    BOOKS_SELECTOR,
+    AMAZON_NOTEBOOK_URL 
+} = require('./const-variables');
 
 async function main() {
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
-        await page.goto(URL);
+        await page.goto(AMAZON_NOTEBOOK_URL);
         await page.waitForSelector(EMAIL_INPUT_SELECTOR, { timeout: 10000 });
         await page.waitForSelector(PASSWORD_INPUT_SELECTOR, { timeout: 10000 });
-        
+
         await page.type(EMAIL_INPUT_SELECTOR, credentials.LOGIN_EMAIL);
         await page.type(PASSWORD_INPUT_SELECTOR, credentials.LOGIN_PASSWORD);
         await page.click(SIGNIN_BUTTON_SELECTOR);
@@ -35,7 +37,7 @@ async function main() {
 
         await page.screenshot({ path: 'screenshot.png' });
 
-        
+
 
         await page.close();
         await browser.close();
