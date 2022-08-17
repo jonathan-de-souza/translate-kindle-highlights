@@ -1,8 +1,8 @@
 {
-  "name": "kindle_test",
+  "name": "translate-kindle-highlights",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node test.js"

@@ -8,7 +8,7 @@ const LIBRARY_SECTION_SELECTOR = 'div[id="library"]';
 const BOOKS_SELECTOR = 'div[class="a-row kp-notebook-library-each-book"]';
 const URL = 'https://read.amazon.com/notebook';
 
-async function test() {
+async function main() {
     try {
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
@@ -38,15 +38,11 @@ async function test() {
         
 
         await page.close();
-        await browser.close()
-
-
-        // ap_mail
-        // ap_password
+        await browser.close();
 
     } catch (error) {
         console.error(error);
     }
 }
 
-test();
+main();
